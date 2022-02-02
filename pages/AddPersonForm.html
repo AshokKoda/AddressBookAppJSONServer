@@ -7,10 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Address Form</title>
     <link rel="stylesheet" href="../css/AddForm.css">
-    <script type="text/javascript" src="../js/utility.js"></script>
-    <!-- <script type="text/javascript" src="../js/AddressBook.js"></script> -->
+    <script type="text/javascript" src="../js/AddressBook.js"></script>
     <script type="text/javascript" src="../js/validationForm.js"></script>
     <script type="text/javascript" src="../js/site_properties.js"></script>
+    <script type="text/javascript" src="../js/AjaxService.js"></script>
 </head>
 
 <body>
@@ -74,7 +74,8 @@
                 &nbsp;&nbsp;
                 <div>
                     <label class="label text" for="zip">Zip Code:</label>
-                    <input class="input" type="number" id="zipcode" name="zipcode" placeholder="Zip Code" required>
+                    <input class="input" type="number" id="zipcode" name="zipcode" placeholder="Zip Code">
+                    <error-output class="error-zipcode" for="zipcode"></error-output>
                 </div>
             </div>
             <br>

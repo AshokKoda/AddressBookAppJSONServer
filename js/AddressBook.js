@@ -58,12 +58,17 @@ class AddressBook {
         return this._zipcode;
     }
     set zipcode(zipcode) {
-        this._zipcode = zipcode;
+        const zipcodeRegex = RegExp('^[0-9]{6}$');
+        if (zipcodeRegex.test(zipcode)) {
+            this._zipcode = zipcode;
+        } else {
+            throw "Invalid Zipcode.";
+        }
     }
 
     toString() {
-        return "id=" + this.id + ",name='" + this.name + ", phone='" + 
-        this.phone + ",address='" + this.address + ",city='" +
-        this.city + ",state='" + this.state + ",zipcode='" + this.zipcode;
+        return "id=" + this.id + ",name='" + this.name + ", phone='" +
+            this.phone + ",address='" + this.address + ",city='" +
+            this.city + ",state='" + this.state + ",zipcode='" + this.zipcode;
     }
 }

@@ -1,4 +1,4 @@
-// let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+//let XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 const makeServiceCall=(methodType, url, async , data)=>{
     return new Promise(function (resolve, reject){
         let xhr = new XMLHttpRequest();
