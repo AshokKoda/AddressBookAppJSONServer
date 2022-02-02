@@ -1,6 +1,11 @@
 class AddressBook {
 
-    id;
+    get id() {
+        return this._id;
+    }
+    set id(id) {
+        this._id = id;
+    }
 
     get name() {
         return this._name;
@@ -66,9 +71,9 @@ class AddressBook {
         }
     }
 
-    toString() {
-        return "id=" + this.id + ",name='" + this.name + ", phone='" +
-            this.phone + ",address='" + this.address + ",city='" +
-            this.city + ",state='" + this.state + ",zipcode='" + this.zipcode;
-    }
+    // toString() {
+    //     return "id=" + this.id + ",name='" + this.name + ", phone='" +
+    //         this.phone + ",address='" + this.address + ",city='" +
+    //         this.city + ",state='" + this.state + ",zipcode='" + this.zipcode;
+    // }
 }

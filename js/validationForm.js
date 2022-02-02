@@ -3,8 +3,7 @@ let addressBookObject = {};
 
 window.addEventListener('DOMContentLoaded', (event) => {
     validateInputs();
-    //validatePhone();
-    //validateAddress();
+    updateDataForm();
 });
 
 function validateInputs() {
@@ -83,6 +82,11 @@ const save = (event) => {
 }
 
 const setAddressBookObject = () => {
+    //Here we are directly store values in addressBookObject
+    if (!isUpdate && site_properties.useLocalStorage.match("true")) {
+        addressBookObject.id = createNewAddressId();
+    }
+
     addressBookObject._name = getInputValueId('#name');
     addressBookObject._phone = getInputValueId('#phone');
     addressBookObject._address = getInputValueId('#address');
@@ -96,6 +100,12 @@ const createOrUpdateAddressInJsonServer = () => {
     let methodCall = "POST";
     let message = "Data Store with name ";
 
+    if (isUpdate) {
+        methodCall = "PUT";
+        url = url + addressBookObject.id.toString();
+        message = "Data Updated with name ";
+    }
+
     makeServiceCall(methodCall, url, true, addressBookObject)
         .then(response => {
             alert(message + addressBookObject._name);
@@ -108,6 +118,13 @@ const createOrUpdateAddressInJsonServer = () => {
 
 const getInputValueId = (id) => {
     return document.querySelector(id).value;
+}
+
+const createNewAddressId = () => {
+    let addressId = localStorage.getItem('addressId');
+    addressId = !addressId ? 1 : (parseInt(addressId) + 1).toString();
+    localStorage.setItem('AddressId', addressId);
+    return addressId;
 }
 
 const createAndUpdateStorage = () => {
@@ -126,6 +143,29 @@ const createAndUpdateStorage = () => {
         personList = [addressBookObject];
     }
     localStorage.setItem('AddressBookList', JSON.stringify(personList));
+}
+
+const setValue = (id, value) => {
+    const element = document.querySelector(id);
+    element.value = value;
+}
+
+//Update
+const updateDataForm = () => {
+    const jsonData = localStorage.getItem('edit-address');
+    isUpdate = jsonData ? true : false;
+    if (!isUpdate) return;
+    addressBookObject = JSON.parse(jsonData);
+    setForm();
+}
+
+const setForm = () => {
+    setValue('#name', addressBookObject._name);
+    setValue('#phone', addressBookObject._phone);
+    setValue('#address', addressBookObject._address);
+    setValue('#city', addressBookObject._city);
+    setValue('#state', addressBookObject._state);
+    setValue('#zipcode', addressBookObject._zipcode);
 }
 
 const cancel = () => {

@@ -9,6 +9,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 function processAddressDataResponse() {
     createInnerHTML();
+    localStorage.removeItem("edit-address");
 }
 
 const getDataFromLocalStorage = () => {
@@ -62,3 +63,15 @@ const createInnerHTML = () => {
     }
     document.querySelector('#display').innerHTML = innerHtml;
 }
+
+//Update Data
+const update = (data) => {
+    //alert("Updated")
+    let addressData = addressBookList.find(personData => personData.id == data.id);
+    if (!addressData) {
+        return;
+    }
+    localStorage.setItem('edit-address', JSON.stringify(addressData));
+    window.location.replace(site_properties.addform);
+}
+
