@@ -55,13 +55,40 @@ const createInnerHTML = () => {
             <td>${personData._zipcode}</td>
             <td>${personData._phone}</td>
             <td>
-            <img id="${personData._id}" alt="edit" src="../assets/icons/create-black-18dp.svg" onClick=update(this)>
-            <img id="${personData._id}" alt="delete" src="../assets/icons/delete-black-18dp.svg" onClick=remove(this)>
+            <img id="${personData.id}" alt="edit" src="../assets/icons/create-black-18dp.svg" onClick=update(this)>
+            <img id="${personData.id}" alt="delete" src="../assets/icons/delete-black-18dp.svg" onClick=remove(this)>
             </td>
         </tr>
         `;
     }
     document.querySelector('#display').innerHTML = innerHtml;
+}
+
+//Delete data
+const remove = (data) => {
+    //alert("Delete")
+    let personData = addressBookList.find(addressData => addressData.id == data.id);
+    if (!personData) {
+        return;
+    }
+    const index = addressBookList.map(addressData => addressData.id).indexOf(personData.id);
+    addressBookList.splice(index, 1);
+    if(site_properties.useLocalStorage.match("true")){
+        // addressBookList.splice(index, 1);
+        localStorage.setItem('AddressBookList', JSON.stringify(addressBookList));
+        createInnerHTML();
+    } else {
+        const deleteUrl = site_properties.server_url + personData.id.toString();
+        makeServiceCall("DELETE",deleteUrl,true)
+            .then(responseText=>{
+                console.log(responseText)
+                createInnerHTML();
+            })
+            .catch(error=>{
+                console.log("Delete Error Status: " + JSON.stringify(error));
+                alert("Error while deleting "+error)
+            })
+    }
 }
 
 //Update Data
@@ -74,4 +101,3 @@ const update = (data) => {
     localStorage.setItem('edit-address', JSON.stringify(addressData));
     window.location.replace(site_properties.addform);
 }
-
