@@ -73,6 +73,8 @@ const save = (event) => {
             alert("Data Stored With Name " + addressBookObject._name);
             redirect();
         } else {
+            alert("Data Stored With Name " + addressBookObject._name);
+            redirect();
             createOrUpdateAddressInJsonServer();
         }
     } catch (e) {

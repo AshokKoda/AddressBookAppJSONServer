@@ -1,31 +1,22 @@
 {
   "persons": [
     {
-      "_name": "Ashok",
+      "_name": "Testone",
       "_phone": "+91-1234567890",
       "_address": "Address",
       "_city": "Visakhapatnam",
       "_state": "Andhra Pradesh",
-      "_zipcode": "112233",
+      "_zipcode": "511633",
       "id": 1
     },
     {
-      "_name": "Pravin",
-      "_phone": "+91-7396382673",
-      "_address": "Rushikonda",
+      "_name": "Ashok",
+      "_phone": "+91-0000000000",
+      "_address": "Address",
       "_city": "Visakhapatnam",
       "_state": "Andhra Pradesh",
-      "_zipcode": "540068",
+      "_zipcode": "123456",
       "id": 2
-    },
-    {
-      "_name": "Harish",
-      "_phone": "+91-1234567890",
-      "_address": "Address added updated",
-      "_city": "Visakhapatnam",
-      "_state": "Andhra Pradesh",
-      "_zipcode": "112244",
-      "id": 4
     }
   ]
 }

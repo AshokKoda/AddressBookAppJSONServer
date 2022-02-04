@@ -8,6 +8,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 })
 
 function processAddressDataResponse() {
+    //document.querySelector('.address-count').textContent = addressBookList.length;
     createInnerHTML();
     localStorage.removeItem("edit-address");
 }
@@ -45,6 +46,7 @@ const createInnerHTML = () => {
     </tr>`;
 
     let innerHtml = `${headerHtml}`;
+    //if (addressBookList.length == 0) return;
     for (const personData of addressBookList) {
         innerHtml = `${innerHtml}
         <tr>
